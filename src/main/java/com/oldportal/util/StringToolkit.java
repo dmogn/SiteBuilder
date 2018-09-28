@@ -1,21 +1,7 @@
-/*
-* Utilites Library.
-* Copyright (C) Dmitry Ognyannikov, 2005
-* E-Mail: sirius_plus@yahoo.com , dmitry@oldportal.com
-*
-* This library is free software; you can redistribute it and/or
-* modify it under the terms of the GNU Lesser General Public
-* License as published by the Free Software Foundation; either
-* version 2.1 of the License, or (at your option) any later version.
-*
-* This library is distributed in the hope that it will be useful,
-* but WITHOUT ANY WARRANTY; without even the implied warranty of
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-* Lesser General Public License for more details.
-
-* You should have received a copy of the GNU Lesser General Public
-* License along with this library; if not, write to the Free Software
-* Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+/* 
+ * OldPortal Utilites Library is available under the MIT License. See http://opensource.org/licenses/MIT for full text.
+ *
+ * Copyright (C) Dmitry Ognyannikov, 2005
 */
 
 package com.oldportal.util;
@@ -72,6 +58,37 @@ public class StringToolkit {
     public static int findLastTo(String body, String key, int endIndex)
     {
         return findLastFromTo(body, key, 0, endIndex);
+    }
+
+    public static int findLastFromTo(String body, String key, int beginIndex, int endIndex)
+    {
+        if (key.length() < 1)
+            return -1;
+
+        if (beginIndex > body.length()-key.length())
+            return -1;
+
+        char bodyArray[] = body.toCharArray();
+        char keyArray[] = key.toCharArray();
+        for (int i=endIndex; i>=beginIndex; i--)
+        {
+            if (bodyArray[i] == keyArray[0])
+            {
+                if (i+keyArray.length-1 >= bodyArray.length)
+                    return -1;//out of length
+
+                for (int g=0; g<keyArray.length; g++)
+                {
+                    if (bodyArray[i+g] != keyArray[g])
+                        break;
+
+                    if (g == keyArray.length-1)
+                        return i;
+                }
+            }
+        }
+
+        return -1;
     }
 
     public static int findFirstIgnoreCase(String body, String key)
@@ -370,7 +387,7 @@ public class StringToolkit {
 
 
 
-    private static final char rusCharsSmall[] = {'à', 'á', 'â', 'ã', 'ä', 'å', '¸', 'æ', 'ç', 'è', 'é', 'ê', 'ë', 'ì', 'í', 'î', 'ï', 'ð', 'ñ', 'ò', 'ó', 'ô', 'õ', 'ö', '÷', 'ø', 'ù', 'ú', 'û', 'ü', 'ý', 'þ', 'ÿ'};
+    private static final char rusCharsSmall[] = {'ï¿½', 'ï¿½', 'ï¿½', 'ï¿½', 'ï¿½', 'ï¿½', 'ï¿½', 'ï¿½', 'ï¿½', 'ï¿½', 'ï¿½', 'ï¿½', 'ï¿½', 'ï¿½', 'ï¿½', 'ï¿½', 'ï¿½', 'ï¿½', 'ï¿½', 'ï¿½', 'ï¿½', 'ï¿½', 'ï¿½', 'ï¿½', 'ï¿½', 'ï¿½', 'ï¿½', 'ï¿½', 'ï¿½', 'ï¿½', 'ï¿½', 'ï¿½', 'ï¿½'};
     private static final String translitCharsSmall[] = {"a", "b", "v", "g", "d", "e", "yo", "zh", "z", "i", "j", "k", "l", "m", "n", "o", "p", "r", "s", "t", "u", "f", "kh", "c", "ch", "sh", "sch", "#", "y", "\'", "je", "yu", "ya"};
     /** Convert cyrillyc (Russian) text to English characters translit */
     public static String toEnglishTranslit(String text)

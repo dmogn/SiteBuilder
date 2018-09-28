@@ -1,7 +1,9 @@
 /*
  * HTMLFile.java
  *
- * Created on 8 September 2005 ã., 16:51
+ * Created on 8 September 2005, 16:51
+ * 
+ * SiteBuilder is available under the MIT License. See http://opensource.org/licenses/MIT for full text.
  *
  * Copyright (C) Dmitry Ognyannikov
  */
@@ -14,7 +16,7 @@ import java.io.File;
 
 /**
  *
- * @author Dmitry Ognyannikov
+ * @author Dmitry Ognyannikov, 2005
  */
 public class HTMLFile extends com.oldportal.util.TreeNode {
     // constructors:

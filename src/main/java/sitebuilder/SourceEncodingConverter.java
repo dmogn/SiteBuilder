@@ -1,7 +1,9 @@
 /*
  * SourceEncodingConverter.java
  *
- * Created on 30 September 2005 ã., 15:49
+ * Created on 30 September 2005, 15:49
+ * 
+ * SiteBuilder is available under the MIT License. See http://opensource.org/licenses/MIT for full text.
  *
  * Copyright (C) Dmitry Ognyannikov
  */
@@ -12,7 +14,7 @@ import java.io.File;
 
 /**
  *
- * @author Dmitry Ognyannikov
+ * @author Dmitry Ognyannikov, 2005
  */
 public class SourceEncodingConverter {
     

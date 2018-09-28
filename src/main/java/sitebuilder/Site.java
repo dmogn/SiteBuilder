@@ -1,7 +1,9 @@
 /*
  * Site.java
  *
- * Created on 8 September 2005 ã., 16:53
+ * Created on 8 September 2005, 16:53
+ * 
+ * SiteBuilder is available under the MIT License. See http://opensource.org/licenses/MIT for full text.
  *
  * Copyright (C) Dmitry Ognyannikov
  */
@@ -13,7 +15,7 @@ import java.io.File;
 
 /**
  *
- * @author Dmitry Ognyannikov
+ * @author Dmitry Ognyannikov, 2005
  */
 public class Site {
     // constructors:

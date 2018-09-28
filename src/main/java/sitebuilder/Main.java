@@ -1,7 +1,9 @@
 /*
  * Main.java
  *
- * Created on 30 October 2005 , 1:08
+ * Created on 30 October 2005, 1:08
+ * 
+ * SiteBuilder is available under the MIT License. See http://opensource.org/licenses/MIT for full text.
  *
  * Copyright (C) Dmitry Ognyannikov
  */
@@ -15,7 +17,7 @@ import com.martiansoftware.jsap.Switch;
 
 /**
  *
- * @author Dmitry Ognyannikov
+ * @author Dmitry Ognyannikov, 2005
  */
 public class Main {
     // constructors:
