@@ -20,7 +20,7 @@ Requirements: JDK 5.0+
 
 - Only relative links generation (site can be copied anywere, browsed offline, distributed by archive, etc.)
 
-- Keep original HTML page metadata ( <title>, <meta name="Keywords" content="...">, <meta name="Description" content="...">, etc. )
+- Keep original HTML page metadata (\<title\>, \<meta name="Keywords" content="..."\>, \<meta name="Description" content="..."\>, etc. )
 
 - Multilanguage sites with page-to-page links between languages.
 
