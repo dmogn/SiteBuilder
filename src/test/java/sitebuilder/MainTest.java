@@ -11,6 +11,7 @@ public class MainTest {
     /**
      * Disabled test.
      */
+    //@Test
     void testHTMLBuild() {        
         sitebuilder.Site site = new sitebuilder.Site();
         site.process("examples/siriusmg.ru/site.config");

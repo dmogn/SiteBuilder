@@ -7,7 +7,6 @@
  *
  * Copyright (C) Dmitry Ognyannikov
  */
-
 package sitebuilder;
 
 import com.martiansoftware.jsap.FlaggedOption;
@@ -16,20 +15,12 @@ import com.martiansoftware.jsap.JSAPResult;
 import com.martiansoftware.jsap.Switch;
 
 /**
- * The console application start point. Arguments parsing, embedded help. 
- * 
+ * The console application start point. Arguments parsing, embedded help.
+ *
  * @author Dmitry Ognyannikov, 2005
  */
 public class Main {
-    // constructors:
-    /** Creates a new instance of Main */
-    public Main() {
-    }
-    
-    // members:
-    
-    // methods:
-    
+
     /**
      * @param args the command line arguments
      */
@@ -38,31 +29,31 @@ public class Main {
             JSAP jsap = new JSAP();
 
             FlaggedOption optSource = new FlaggedOption("config")
-                                    .setStringParser(JSAP.STRING_PARSER)
-                                    .setDefault("site.config") 
-                                    .setRequired(true) 
-                                    .setShortFlag('c') 
-                                    .setLongFlag("config");
+                    .setStringParser(JSAP.STRING_PARSER)
+                    .setDefault("site.config")
+                    .setRequired(true)
+                    .setShortFlag('c')
+                    .setLongFlag("config");
             optSource.setHelp("Site config file path");
             jsap.registerParameter(optSource);
-            
+
             FlaggedOption optEncoding = new FlaggedOption("encoding")
-                                    .setStringParser(JSAP.STRING_PARSER)
-                                    .setDefault("UTF8") 
-                                    .setRequired(false) 
-                                    .setShortFlag('E') 
-                                    .setLongFlag("encoding");
+                    .setStringParser(JSAP.STRING_PARSER)
+                    .setDefault("UTF8")
+                    .setRequired(false)
+                    .setShortFlag('E')
+                    .setLongFlag("encoding");
             optSource.setHelp("Files encoding");
             jsap.registerParameter(optEncoding);
-            
+
             Switch swHelp = new Switch("help")
-                        .setShortFlag('h')
-                        .setLongFlag("help");
+                    .setShortFlag('h')
+                    .setLongFlag("help");
             swHelp.setHelp("Print help and exit.");
             jsap.registerParameter(swHelp);
-            
+
             JSAPResult config = jsap.parse(args);
-            
+
             if (!config.success() || config.getBoolean("help")) {
                 // print help
                 System.err.println();
@@ -72,14 +63,14 @@ public class Main {
                 System.err.println();
                 // show full help as well
                 System.err.println(jsap.getHelp());
-                
+
                 if (config.getBoolean("help")) {
                     System.exit(0);
                 } else {
-                    System.exit(1); 
+                    System.exit(1);
                 }
             }
-            
+
             // work mode
             String encoding = config.getString("encoding");
 
@@ -90,9 +81,9 @@ public class Main {
                 System.out.println("start process project: " + projectConfig);
                 site.process(projectConfig);
             }
-            
+
         } catch (Exception ex) {
             System.err.println("Arguments parsing exception: " + ex.getLocalizedMessage());
         }
-    }    
+    }
 }

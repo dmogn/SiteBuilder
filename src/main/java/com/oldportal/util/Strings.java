@@ -2,8 +2,7 @@
  * OldPortal Utilites Library is available under the MIT License. See http://opensource.org/licenses/MIT for full text.
  *
  * Copyright (C) Dmitry Ognyannikov, 2005
-*/
-
+ */
 package com.oldportal.util;
 
 import java.io.IOException;
@@ -12,78 +11,65 @@ import java.util.Vector;
 
 /**
  * Vector (array) of strings.
+ *
  * @author Dmitry Ognyannikov
  */
 public class Strings implements Serializable {
-    // constructors:
+
+    private Vector<String> strings = new Vector<String>();
+
     public Strings() {
     }
-  
-    public Strings(final Strings src)
-    {
-        strings = (Vector)src.strings.clone();
+
+    public Strings(final Strings src) {
+        strings = (Vector) src.strings.clone();
     }
-  
-    public Strings(final String src)
-    {
+
+    public Strings(final String src) {
         loadFromString(src);
     }
 
-    public Strings(Vector<String> src)
-    {
-        strings = (Vector<String>)src.clone();
+    public Strings(Vector<String> src) {
+        strings = (Vector<String>) src.clone();
     }
 
+    public String get(int index) {
+        return (String) strings.get(index);
+    }
 
-  // members:
-  private Vector<String> strings = new Vector<String>();
+    public void insert(String str, int index) {
+        strings.insertElementAt(str, index);
+    }
 
-  // methods:
+    public void add(String str) {
+        strings.add(str);
+    }
 
-  public String get(int index)
-  {
-          return (String)strings.get(index);
-  }
+    public void clear() {
+        strings.clear();
+    }
 
-  public void insert(String str, int index)
-  {
-    strings.insertElementAt(str, index);
-  }
+    public int size() {
+        return strings.size();
+    }
 
-  public void add(String str)
-  {
-    strings.add(str);
-  }
+    public void removeElementAt(int index) {
+        strings.removeElementAt(index);
+    }
 
-  public void clear()
-  {
-    strings.clear();
-  }
+    public String toString() {
+        if (size() == 0) {
+            return new String();
+        }
+        String str = get(0);
+        for (int i = 1; i < size(); i++) {
+            str += "\n";
+            str += get(i);
+        }
+        return str;
+    }
 
-  public int size()
-  {
-    return strings.size();
-  }
-
-  public void removeElementAt(int index)
-  {
-    strings.removeElementAt(index);
-  }
-
-  public String toString()
-  {
-   if (size()==0)
-    return new String();
-   String str=get(0);
-   for (int i=1; i<size(); i++)
-   {
-    str+="\n";
-    str+=get(i);
-   }
-   return str;
-  }
-
-  /*public boolean loadFromFile(String fileName)
+    /*public boolean loadFromFile(String fileName)
   {
   try{
     return loadFromFile(new FileInputStream(fileName));
@@ -111,27 +97,24 @@ public class Strings implements Serializable {
    return false;
    }
   }//*/
+    public void loadFromString(String str) {
+        clear();
+        String newstr = new String("");
+        for (int i = 0; i < str.length(); i++) {
+            int c = str.charAt(i);
+            if (c == '\n') {
+                add(newstr);
+                newstr = new String("");
+            } else {
+                newstr += (char) c;
+            }
+        }
+        if (newstr.length() > 0) {
+            add(newstr);
+        }
+    }
 
-  public void loadFromString(String str)
-  {
-   clear();
-   String newstr = new String("");
-   for (int i=0; i<str.length(); i++)
-   {
-     int c = str.charAt(i);
-     if (c=='\n')
-     {
-      add(newstr);
-      newstr = new String("");
-     }
-     else
-      newstr += (char)c;
-   }
-   if (newstr.length()>0)
-    add(newstr);
-  }
-
-  /*public boolean saveToFile(String fileName, int textMode)
+    /*public boolean saveToFile(String fileName, int textMode)
   {
 		try{
 			 File file = new File(fileName);
@@ -158,28 +141,23 @@ public class Strings implements Serializable {
 			e.printStackTrace();
 		return false; }
   }//*/
+    // implement interfaces:
+    private void writeObject(java.io.ObjectOutputStream out)
+            throws IOException {
+        out.writeObject(strings);
+    }
 
-  // implement interfaces:
-  private void writeObject(java.io.ObjectOutputStream out)
-     throws IOException
-  {
-    out.writeObject(strings);
-  }
+    private void readObject(java.io.ObjectInputStream in)
+            throws IOException, ClassNotFoundException {
+        strings = (Vector) in.readObject();
+    }
 
-  private void readObject(java.io.ObjectInputStream in)
-     throws IOException, ClassNotFoundException
-  {
-    strings = (Vector)in.readObject();
-  }
+    protected Object clone() {
+        return new Strings(this);
+    }
 
-  protected Object clone()
-  {
-    return new Strings(this);
-  }
-
-  public Vector<String> getStringsVector()
-  {
-      return strings;
-  }
+    public Vector<String> getStringsVector() {
+        return strings;
+    }
 
 }

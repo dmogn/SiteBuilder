@@ -7,7 +7,6 @@
  *
  * Copyright (C) Dmitry Ognyannikov
  */
-
 package sitebuilder;
 
 import java.io.File;
@@ -17,52 +16,39 @@ import java.io.File;
  * @author Dmitry Ognyannikov, 2005
  */
 public class SourceEncodingConverter {
-    
-    /** Creates a new instance of SourceEncodingConverter */
-    public SourceEncodingConverter() {
-    }
-    
-    static String fromEncoding = "cp1251";//"UTF-8";
-    static String toEncoding = "cp1251";
+
+    static String fromEncoding = "cp1251";//;
+    static String toEncoding = "UTF-8";
     static String stringEndDelimiter = "\n";
-    
-    public static void process(File directory)
-    {
+
+    public static void process(File directory) {
         File dirFiles[] = directory.listFiles();
-        for (int i=0; i<dirFiles.length; i++)
-        {
-            if (dirFiles[i].isFile())
-            {
+        for (int i = 0; i < dirFiles.length; i++) {
+            if (dirFiles[i].isFile()) {
                 processFile(dirFiles[i]);
-            }
-            else if (dirFiles[i].isDirectory())
-            {
+            } else if (dirFiles[i].isDirectory()) {
                 process(dirFiles[i]);
             }
         }
     }
-    
-    static void processFile(File file)
-    {
+
+    static void processFile(File file) {
         String ext = com.oldportal.util.IOToolkit.getFileExtension(file.getAbsolutePath());
-                if (ext.equalsIgnoreCase("cpp") || ext.equalsIgnoreCase("c") || ext.equalsIgnoreCase("cxx")
+        if (ext.equalsIgnoreCase("cpp") || ext.equalsIgnoreCase("c") || ext.equalsIgnoreCase("cxx")
                 || ext.equalsIgnoreCase("cc")
                 || ext.equalsIgnoreCase("h") || ext.equalsIgnoreCase("hpp") || ext.equalsIgnoreCase("hxx")
                 || ext.equalsIgnoreCase("hh")
-                || ext.equalsIgnoreCase("java") || ext.equalsIgnoreCase("asm") || ext.equalsIgnoreCase("sh") 
-                || ext.equalsIgnoreCase("pas") || ext.equalsIgnoreCase(""))
-                {
-                    convertFile(file);
-                }
-                else 
+                || ext.equalsIgnoreCase("java") || ext.equalsIgnoreCase("asm") || ext.equalsIgnoreCase("sh")
+                || ext.equalsIgnoreCase("pas") || ext.equalsIgnoreCase("")) {
+            convertFile(file);
+        } else 
                     ;
     }
-    
-    static void convertFile(File file)
-    {
+
+    static void convertFile(File file) {
         //com.oldportal.util.Strings fileStrings = com.oldportal.util.IOToolkit.loadTextFile(file);
         String fileText = com.oldportal.util.IOToolkit.loadFile(file, fromEncoding);
-        
+
 //        com.oldportal.util.Strings fileStrings = new com.oldportal.util.Strings(fileText);
 //        
 //        com.oldportal.util.Strings fileStringsOut = new com.oldportal.util.Strings();
@@ -74,9 +60,8 @@ public class SourceEncodingConverter {
 //                fileStringsOut.insert(fileStrings.get(i), 0);
 //        }
 //        com.oldportal.util.IOToolkit.saveTextFile(file, fileStringsOut);
-        
         com.oldportal.util.IOToolkit.writeFile(file, fileText, toEncoding, stringEndDelimiter);
         //com.oldportal.util.IOToolkit.saveTextFile(file, fileStrings);
     }
-    
+
 }

@@ -2,8 +2,7 @@
  * OldPortal Utilites Library is available under the MIT License. See http://opensource.org/licenses/MIT for full text.
  *
  * Copyright (C) Dmitry Ognyannikov, 2005
-*/
-
+ */
 package com.oldportal.util;
 
 import java.util.Vector;
@@ -13,8 +12,11 @@ import java.util.Vector;
  * @author Dmitry Ognyannikov
  */
 public class TreeNode {
-    // constructors:
-    /** Creates a new instance of TreeNode */
+
+    private TreeNode parentNode = null;
+
+    private Vector<TreeNode> childNodes = new Vector<TreeNode>();
+
     public TreeNode() {
     }
 
@@ -22,27 +24,20 @@ public class TreeNode {
         parentNode = _parentNode;
     }
 
-    // members:
-    private TreeNode parentNode = null;
-
-    private Vector<TreeNode> childNodes = new Vector<TreeNode>();
-
-    // methods:
-    public void add(TreeNode node)
-    {
-        if (node.parentNode != null)
+    public void add(TreeNode node) {
+        if (node.parentNode != null) {
             node.parentNode.remove(node);
+        }
 
         node.parentNode = this;
         childNodes.add(node);
     }
 
-    public void remove(TreeNode node)
-    {
-        if (node.parentNode != this)
-        {
-            if (node.parentNode != null)
+    public void remove(TreeNode node) {
+        if (node.parentNode != this) {
+            if (node.parentNode != null) {
                 node.parentNode.remove(node);
+            }
 
             return;
         }
@@ -50,28 +45,23 @@ public class TreeNode {
         childNodes.remove(node);
     }
 
-    public TreeNode getParentNode()
-    {
+    public TreeNode getParentNode() {
         return parentNode;
     }
 
-    public TreeNode[] getChilds()
-    {
-         TreeNode childs[] = new TreeNode[childNodes.size()];
-         for (int i=0; i<childNodes.size(); i++)
-         {
-             childs[i] = childNodes.get(i);
-         }
-         return childs;
+    public TreeNode[] getChilds() {
+        TreeNode childs[] = new TreeNode[childNodes.size()];
+        for (int i = 0; i < childNodes.size(); i++) {
+            childs[i] = childNodes.get(i);
+        }
+        return childs;
     }
 
-    public int getChildsCount()
-    {
+    public int getChildsCount() {
         return childNodes.size();
     }
 
-    public TreeNode getChildByIndex(int index)
-    {
+    public TreeNode getChildByIndex(int index) {
         return childNodes.get(index);
     }
 
