@@ -2,7 +2,7 @@
 
 ## HTML static site generation. 
 
-HTML text pages/images on input, structured HTML website on output. The general purpose is documentation publishing.
+HTML text pages/images on input, structured HTML website on output. General purpose is documentation publishing.
 
 
 Requirements: JDK 5.0+
