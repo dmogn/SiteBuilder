@@ -16,7 +16,8 @@ import com.martiansoftware.jsap.JSAPResult;
 import com.martiansoftware.jsap.Switch;
 
 /**
- *
+ * The console application start point. Arguments parsing, embedded help. 
+ * 
  * @author Dmitry Ognyannikov, 2005
  */
 public class Main {
@@ -93,19 +94,5 @@ public class Main {
         } catch (Exception ex) {
             System.err.println("Arguments parsing exception: " + ex.getLocalizedMessage());
         }
-    }
-    
-    static void testHTMLBuild()
-    {
-        //sitebuilder.Site site = new sitebuilder.Site();
-        //site.loadTemplates("D:\\Projects\\web\\site_test\\templates\\file_template.html", "D:\\Projects\\web\\site_test\\templates\\index_template.html");
-        //site.process("D:\\Projects\\web\\site_test\\", "D:\\Projects\\web\\site_test_dest\\");
-        
-        sitebuilder.Site site = new sitebuilder.Site();
-        site.process("D:\\Projects\\web\\oldportal.com\\site.config");
-        
-        site = new sitebuilder.Site();
-        site.process("D:\\Projects\\web\\oldportal.com\\ru\\site.config");
-    }
-    
+    }    
 }
