@@ -43,7 +43,7 @@ INDEX_FILE_TEMPLATE "examples/siriusmg.ru/templates/index_template.html"
 OTHER_FILES_TEMPLATE "examples/siriusmg.ru/templates/file_template.html"
 </code></pre>
 
-Pages list format in **index.config** (# - symbol of break line in menu):
+Pages list format in **index.config** (# - symbol of break line in page menu):
 
 <pre><code>
 page.html "Link to the page name"
